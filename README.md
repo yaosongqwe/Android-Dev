@@ -2,6 +2,7 @@
 ### 文件的命名
 #### 类的命名
 命名应该遵循[驼峰命名法](http://baike.baidu.com/link?url=36TNYWM87ZKQKN5r1RayLumvi7wqv3vmVcgi7eicJVD4VpbpNyMUp443RFJ4coFeosuNIg1TZny2p9fTTlpOva)
+
 对于继承自 Android 组件的类来说，命名应以该组件的名称结尾；例如： `SignInActivity`, `SignInFragment`, `ImageUploaderService`, `ChangePasswordDialog`。
 #### Res 中文件的命名
 资源文件应该以小写 + 下划线( _ )的格式命名。
