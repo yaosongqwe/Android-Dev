@@ -223,7 +223,7 @@ public class Child extends Parent {
 	}
 	
 	public void setName(String name) {
-			mName = name;
+		mName = name;
 	}
 
 	private void setSomething() {
