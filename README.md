@@ -1,3 +1,6 @@
+	wizar Andorid 开发规范
+
+> wu 2016-02
 
 ### 文件的命名
 #### 类的命名
@@ -42,7 +45,7 @@
 | Disabled     | `_disabled`     | `btn_order_disabled.9.png`  |
 | Selected     | `_selected`     | `btn_order_selected.9.png`  |
 
-**注意** 原则上讲每一个可交互的控件都应该有交互的效果.例如:Button 至少应该有 normal 和 pressed 两种效果.实际项目中如果切图只提供一张, 开发人员有义务和UI人员沟通, 要求给出完整的切图. 
+**注意** 原则上讲每一个可交互的控件都应该有交互的效果. 例如:Button 至少应该有 normal 和 pressed 两种效果. 实际项目中如果切图只提供一张, 开发人员有义务和相关人员沟通, 要求给出完整的切图. 
 
 ##### 布局文件
 布局文件应该和将要用于的 Android 组件的名称相匹配，但是这次应以组件的名称开头。例如， 如果我们为 `SignInActivity`,创建布局文件，那布局文件的名称就应该为 `activity_sign_in.xml`.
