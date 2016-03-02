@@ -446,41 +446,109 @@ color 中颜色的命名应该遵循**小写 + 下划线**的格式
 #### 不要在 Android 程序里使用 enum
 虽然使用 enum 很方便,但是会比使用静态变量产生多于两倍的内存消耗,所以 Android 官方强烈建议不要在Android程序里面使用到 enum.
 使用 Android Typedef Annotations 可以代替 enum, 具体的使用方法请参考[这里](http://tools.android.com/tech-docs/support-annotations)
-#### 关于数组遍历
+###项目结构图
+
+├── BaseProject
+|   ├── com.clouldpos.jniinterface 非接卡驱动
+|   ├── com.gprinter.aidl 佳博打印AIDL
+|   ├── com.orhanobut.logger Log框架
+|   ├── com.wizarpos.baseproject
+|   |   ├── activity 存放Activity
+│   │   ├── app 存放Application
+│   │   ├── common 公共类
+│   │   │   ├──device 驱动
+│   │	│   │   ├── print 打印驱动
+│   │   ├── data 数据库
+│   │   ├── fragment 存放fragment
+│   │   ├── hotfix 热修复
+│   │   ├── net 网络框架
+│   │   ├── view 自定义控件
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├── 
+│       ├──
+│       ├──
+│       ├──
+│       └──
+
+###Adapter的一般写法
+####不要将Adapter作为子类
+无论用的是ListView还是RecyclerView. 对应的Adapter都尽量应该是一个单独的类,而不应该是某个Activity或者某个Fragment的子类.
+####setDataChanged 及 AddDataChanged
+请在adapter类中定义setDataChanged 或 addDataChanged 方法供刷新数据使用.
+####ViewHolder
+每个adapter都应该有ViewHolder
+示例:
 ```Java
-static class Foo {
-	int mSplat;
-}
+public class MixDetialAdapter extends BaseAdapter{
 
-Foo[] mArray = ...
-
-// 最慢,消耗最多
-public void zero() {
-	int sum = 0;
-	for (int i = 0; i < mArray.length; ++i) {
-		sum += mArray[i].mSplat;
+	private Context context;
+	
+	private List<String[]> mixTrans = new ArrayList<String[]>();
+	
+	public MixDetialAdapter(Context context) {
+		this.context = context;
 	}
-}
-
-public void one() {
-	int sum = 0;
-	Foo[] localArray = mArray;
-	int len = localArray.length;
-
-	for (int i = 0; i < len; ++i) {
-		sum += localArray[i].mSplat;
+	
+	@Override
+	public int getCount() {
+		return mixTrans.size();
 	}
-}
 
-// 推荐
-public void two() {
-	int sum = 0;
-	for (Foo a : mArray) {
-		sum += a.mSplat;
+	@Override
+	public Object getItem(int position) {
+		return mixTrans.get(position);
+	}
+
+	@Override
+	public long getItemId(int position) {
+		return 0;
+	}
+
+	ViewHolder holder;
+	@Override
+	public View getView(int position, View convertView, ViewGroup parent) {
+		if(convertView == null){
+			holder = new ViewHolder();
+			convertView = LayoutInflater.from(context).inflate(R.layout.item_mix_detial, null);
+			holder.tvTranName = (TextView) convertView.findViewById(R.id.tvTranName);
+			holder.tvTranTime = (TextView) convertView.findViewById(R.id.tvTranTime);
+			holder.tvTranAmont = (TextView) convertView.findViewById(R.id.tvTranAmount);
+			convertView.setTag(holder);
+		}else{
+			holder = (ViewHolder) convertView.getTag();
+		}
+		holder.tvTranName.setText(mixTrans.get(position)[0]);
+		holder.tvTranTime.setText(mixTrans.get(position)[1]);
+		holder.tvTranAmont.setText("￥" + mixTrans.get(position)[2]);
+		return convertView;
+	}
+
+	class ViewHolder{
+		TextView tvTranName, tvTranTime, tvTranAmont;
+	}
+	
+	public void setDataChanged( List<String[]> mixTrans){
+		if(mixTrans == null){
+			this.mixTrans.clear();
+		}else{
+			this.mixTrans = mixTrans; 
+		}
+		this.notifyDataSetChanged();
 	}
 }
 ```
-- `zero()` 是最慢的方法,因为 JIT 还不能对当数组进行遍历时每次都要去获得数组的长度进行优化.
-- `one()` 更快一点, 因为它所有的数据都拿出来存放在局部变量里,避免了查找.只有提供了数组的长度对性能有了一定的提升
-- `two()` 在没有 JIT 的设备里是最快的,但在有 JIT 的设备里与**one()**难分上下.它使用了 Java 1.5 版本中的增强版语法
- 所以应该默认使用**增强版的 for** 循环.
+
