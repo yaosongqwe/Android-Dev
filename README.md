@@ -447,7 +447,7 @@ color 中颜色的命名应该遵循**小写 + 下划线**的格式
 虽然使用 enum 很方便,但是会比使用静态变量产生多于两倍的内存消耗,所以 Android 官方强烈建议不要在Android程序里面使用到 enum.
 使用 Android Typedef Annotations 可以代替 enum, 具体的使用方法请参考[这里](http://tools.android.com/tech-docs/support-annotations)
 ###项目结构图
-
+```XML
 ├── BaseProject
 |   ├── com.clouldpos.jniinterface 非接卡驱动
 |   ├── com.gprinter.aidl 佳博打印AIDL
@@ -483,7 +483,7 @@ color 中颜色的命名应该遵循**小写 + 下划线**的格式
 │       ├──
 │       ├──
 │       └──
-
+```
 ###Adapter的一般写法
 ####不要将Adapter作为子类
 无论用的是ListView还是RecyclerView. 对应的Adapter都尽量应该是一个单独的类,而不应该是某个Activity或者某个Fragment的子类.
