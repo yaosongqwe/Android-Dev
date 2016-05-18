@@ -474,7 +474,8 @@ FragmentManager 主要包含以下方法:
    
    其实是由Activity被回收后重启所导致的Fragment重复创建和重叠的问题。
    在Activity onCreate()中添加Fragment的时候一定不要忘了检查一下savedInstanceState. savedInstanceState 中没有才新建一个Fragment的实例,否则找出原有的实例.
-   
+   获取:
+
         if (savedInstanceState != null) {
             menuFragment = (MenuFragment) getSupportFragmentManager().getFragment(savedInstanceState, MenuFragment.LOG_TAG);
             productListFragment = (ProductListFragment) getSupportFragmentManager().getFragment(savedInstanceState, ProductListFragment.LOG_TAG);
