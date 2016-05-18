@@ -485,21 +485,16 @@ FragmentManager 主要包含以下方法:
             scanCodeFragment = new ScanCodeFragment();
         }
     保存:
-
-        ```
-        
         @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        if (menuFragment != null) {
-            getSupportFragmentManager().putFragment(outState, MenuFragment.LOG_TAG, menuFragment);
+        protected void onSaveInstanceState(Bundle outState) {
+            if (menuFragment != null) {
+                getSupportFragmentManager().putFragment(outState, MenuFragment.LOG_TAG, menuFragment);
+            }
+            if (scanCodeFragment != null) {
+                getSupportFragmentManager().putFragment(outState, ScanCodeFragment.LOG_TAG, scanCodeFragment);
+            }
+            if (productListFragment != null) {
+                getSupportFragmentManager().putFragment(outState, ProductListFragment.LOG_TAG, productListFragment);
+            }
+            super.onSaveInstanceState(outState);
         }
-        if (scanCodeFragment != null) {
-            getSupportFragmentManager().putFragment(outState, ScanCodeFragment.LOG_TAG, scanCodeFragment);
-        }
-        if (productListFragment != null) {
-            getSupportFragmentManager().putFragment(outState, ProductListFragment.LOG_TAG, productListFragment);
-        }
-        super.onSaveInstanceState(outState);
-    }
-    
-        ```
