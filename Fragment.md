@@ -475,19 +475,28 @@ FragmentManager 主要包含以下方法:
    其实是由Activity被回收后重启所导致的Fragment重复创建和重叠的问题。
    在Activity onCreate()中添加Fragment的时候一定不要忘了检查一下savedInstanceState. savedInstanceState 中没有才新建一个Fragment的实例,否则找出原有的实例.
    
-        if (savedInstanceState == null) {
-              getFragmentManager().beginTransaction().add(android.R.id.content, new UIFragment()).commit();
-        }else{
-              //先通过id或者tag找到“复活”的所有UI-Fragment
-              UIFragment fragment1 = getFragmentManager().findFragmentById(R.id.fragment1);
-              UIFragment fragment2 = getFragmentManager().findFragmentByTag("tag");
-              UIFragment fragment3 = ...
-              ...
-              //show()一个即可
-              getFragmentManager().beginTransaction()
-                      .show(fragment1)
-                      .hide(fragment2)
-                      .hide(fragment3)
-                      .hide(...)
-                      .commit();
+        if (savedInstanceState != null) {
+            menuFragment = (MenuFragment) getSupportFragmentManager().getFragment(savedInstanceState, MenuFragment.LOG_TAG);
+            productListFragment = (ProductListFragment) getSupportFragmentManager().getFragment(savedInstanceState, ProductListFragment.LOG_TAG);
+            scanCodeFragment = (ScanCodeFragment) getSupportFragmentManager().getFragment(savedInstanceState, ScanCodeFragment.LOG_TAG);
+        } else {
+            menuFragment = new MenuFragment();
+            productListFragment = new ProductListFragment();
+            scanCodeFragment = new ScanCodeFragment();
         }
+    保存:
+        ```
+        @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        if (menuFragment != null) {
+            getSupportFragmentManager().putFragment(outState, MenuFragment.LOG_TAG, menuFragment);
+        }
+        if (scanCodeFragment != null) {
+            getSupportFragmentManager().putFragment(outState, ScanCodeFragment.LOG_TAG, scanCodeFragment);
+        }
+        if (productListFragment != null) {
+            getSupportFragmentManager().putFragment(outState, ProductListFragment.LOG_TAG, productListFragment);
+        }
+        super.onSaveInstanceState(outState);
+    }
+        ```
