@@ -290,6 +290,10 @@ export JVM_ARGS="-Xmx4096m -XX:MaxPermSize=1024m"
 
 重新开始编译.
 
+编译成功后会有如下提示:
+```
+#### make completed successfully (01:04:05 (hh:mm:ss)) ####
+```
 
 # 运行
 
