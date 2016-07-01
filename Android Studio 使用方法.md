@@ -11,3 +11,5 @@
 [从Eclipse到AndroidStudio（四）Gradle基本配置]http://www.jianshu.com/p/cd8fe9b16369
 
 [从Eclipse到AndroidStudio（五）迁移一个eclipse工程到AndroidStudio有哪些坑]http://www.jianshu.com/p/a0fd23afe39f
+
+[AndroidStudio插件汇总]https://ydmmocoo.github.io/2016/06/28/Android-Studio%E6%8F%92%E4%BB%B6%E6%95%B4%E7%90%86/
