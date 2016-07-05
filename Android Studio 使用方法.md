@@ -12,4 +12,8 @@
 
 [从Eclipse到AndroidStudio（五）迁移一个eclipse工程到AndroidStudio有哪些坑]http://www.jianshu.com/p/a0fd23afe39f
 
-[AndroidStudio插件汇总]https://ydmmocoo.github.io/2016/06/28/Android-Studio%E6%8F%92%E4%BB%B6%E6%95%B4%E7%90%86/
+### AndroidStudio插件汇总
+https://ydmmocoo.github.io/2016/06/28/Android-Studio%E6%8F%92%E4%BB%B6%E6%95%B4%E7%90%86/
+
+### Gradle
+[给 Android 初学者的 Gradle 知识普及] https://github.com/pinocc/Android-Dev/edit/master/Android%20Studio%20%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95.md
