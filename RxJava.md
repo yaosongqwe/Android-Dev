@@ -1,3 +1,19 @@
+
+
+### 参考链接:
+[Awesome-RxJava] https://github.com/lzyzsd/Awesome-RxJava
+
+[给 Android 开发者的 RxJava 详解] http://gank.io/post/560e15be2dca930e00da1083
+
+[ReactiveX/RxJava文档中文版] https://mcxiaoke.gitbooks.io/rxdocs/content/
+
+[RxJava-Android-Samples] https://github.com/kaushikgopal/RxJava-Android-Samples
+
+[learning-rxjava] https://github.com/meddle0x53/learning-rxjava
+
+[图解 Rx 操作符，一眼就看懂] http://rxmarbles.com/
+
+
 # RxJava
 
 特点: 异步, 响应式, 灵敏, 易泄露
@@ -131,16 +147,3 @@ if (_rxBus.hasObservers()) {
             _rxBus.send(new RxBusDemoFragment.TapEvent());
         }
 ```
-
-### 参考链接:
-[Awesome-RxJava] https://github.com/lzyzsd/Awesome-RxJava
-
-[给 Android 开发者的 RxJava 详解] http://gank.io/post/560e15be2dca930e00da1083
-
-[ReactiveX/RxJava文档中文版] https://mcxiaoke.gitbooks.io/rxdocs/content/
-
-[RxJava-Android-Samples] https://github.com/kaushikgopal/RxJava-Android-Samples
-
-[learning-rxjava] https://github.com/meddle0x53/learning-rxjava
-
-[图解 Rx 操作符，一眼就看懂] http://rxmarbles.com/
